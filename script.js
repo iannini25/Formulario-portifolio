@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // URL do seu Web App
-    const scriptURL = "https://script.google.com/macros/s/AKfycbz7cZxZr0mkQ6omdezYXW1PbqU0Id27-7wKRh_NtvcRiY1IMQNenpzv_JpNx646eLc/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzb5aeYa87uGGVB6d-m_gGAtAi_Nu6slKGUOZ5QA94SB051vEqLjjZI2hgmkkPZM-E/exec";
 
     const fd = new FormData();
     fd.append("nome", nome);
@@ -74,3 +74,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
