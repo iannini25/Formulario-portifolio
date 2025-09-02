@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const whatsappInput = document.getElementById("whatsapp");
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  // Máscara fixa: (00) 0000-0000  -> 10 dígitos
+  // Máscara fixa: (00) 0000-0000 (10 dígitos)
   whatsappInput.addEventListener("input", function (e) {
     let v = e.target.value.replace(/\D/g, "");
     if (v.length > 10) v = v.slice(0, 10);
@@ -28,14 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
       form.querySelectorAll('input[name="servicos"]:checked')
     ).map((el) => el.value);
 
-    // Validação para (00) 0000-0000
+    // Validação
     const regex = /^\(\d{2}\) \d{4}-\d{4}$/;
     if (!regex.test(whatsapp)) {
       statusDiv.textContent = "⚠️ Insira um número válido no formato (00) 0000-0000.";
       statusDiv.className = "error";
       return;
     }
-
     if (servicosSelecionados.length === 0) {
       statusDiv.textContent = "⚠️ Selecione pelo menos um serviço (Figma e/ou Código).";
       statusDiv.className = "error";
@@ -48,8 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const fd = new FormData();
     fd.append("nome", nome);
     fd.append("whatsapp", whatsapp);
-    // Ex.: "Figma + Código" se ambos marcados
+
+    // 1) String única para a coluna "Escolhas"
     fd.append("servicos", servicosSelecionados.join(" + "));
+
+    // 2) Também envia como array para máxima compatibilidade
+    servicosSelecionados.forEach(v => fd.append("servicos[]", v));
 
     statusDiv.textContent = "Enviando…";
     statusDiv.className = "";
