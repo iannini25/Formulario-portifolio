@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const statusDiv = document.getElementById("form-status");
   const whatsappInput = document.getElementById("whatsapp");
   const submitBtn = form.querySelector('button[type="submit"]');
+  const servicosHidden = document.getElementById("servicos-hidden"); // <input type="hidden" name="servicos" id="servicos-hidden">
 
   // Máscara fixa: (00) 0000-0000 (10 dígitos)
   whatsappInput.addEventListener("input", function (e) {
@@ -22,13 +23,16 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
+    // Coleta campos
     const nome = form.querySelector('input[name="nome"]').value.trim();
     const whatsapp = whatsappInput.value.trim();
-    const servicosSelecionados = Array.from(
-      form.querySelectorAll('input[name="servicos"]:checked')
-    ).map((el) => el.value);
 
-    // Validação
+    // Coleta os checkboxes marcados (validação do "clique")
+    const servicosSelecionados = Array.from(
+      form.querySelectorAll('input[name="servicos[]"]:checked')
+    ).map(el => el.value);
+
+    // Validações
     const regex = /^\(\d{2}\) \d{4}-\d{4}$/;
     if (!regex.test(whatsapp)) {
       statusDiv.textContent = "⚠️ Insira um número válido no formato (00) 0000-0000.";
@@ -41,18 +45,13 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // URL do seu Web App
+    // Preenche o hidden com a string final (o Apps Script lê este campo)
+    servicosHidden.value = servicosSelecionados.join(" + ");
+
+    // Monta o payload diretamente do form (inclui nome, whatsapp, servicos[] e servicos)
+    const fd = new FormData(form);
+
     const scriptURL = "https://script.google.com/macros/s/AKfycbzb5aeYa87uGGVB6d-m_gGAtAi_Nu6slKGUOZ5QA94SB051vEqLjjZI2hgmkkPZM-E/exec";
-
-    const fd = new FormData();
-    fd.append("nome", nome);
-    fd.append("whatsapp", whatsapp);
-
-    // 1) String única para a coluna "Escolhas"
-    fd.append("servicos", servicosSelecionados.join(" + "));
-
-    // 2) Também envia como array para máxima compatibilidade
-    servicosSelecionados.forEach(v => fd.append("servicos[]", v));
 
     statusDiv.textContent = "Enviando…";
     statusDiv.className = "";
@@ -74,4 +73,3 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
-
