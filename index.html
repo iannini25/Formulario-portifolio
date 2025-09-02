@@ -26,24 +26,37 @@
       <h2>Garanta seu portifólio!</h2>
       <form class="login-form">
         <input type="text" name="nome" placeholder="Seu Nome" required />
-        <input type="tel" name="whatsapp" id="whatsapp" placeholder="Número" required />
+        <input
+          type="tel"
+          name="whatsapp"
+          id="whatsapp"
+          placeholder="(00) 0000-0000"
+          autocomplete="tel"
+          inputmode="numeric"
+          required
+        />
 
         <!-- Seleção de serviços -->
         <fieldset class="toggle-group">
           <legend class="label-servicos">O que você precisa?</legend>
 
-          <input type="checkbox" id="servico-figma" name="servicos" value="Figma" class="toggle-input" />
+          <input type="checkbox" id="servico-figma" name="servicos[]" value="Figma" class="toggle-input" />
           <label for="servico-figma" class="toggle">Figma</label>
 
-          <input type="checkbox" id="servico-codigo" name="servicos" value="Código" class="toggle-input" />
+          <input type="checkbox" id="servico-codigo" name="servicos[]" value="Código" class="toggle-input" />
           <label for="servico-codigo" class="toggle">Código</label>
         </fieldset>
+
+        <!-- Campo oculto com a string unificada -->
+        <input type="hidden" name="servicos" id="servicos-hidden" />
 
         <button type="submit" class="btn">ENVIAR</button>
         <div id="form-status"></div>
       </form>
     </div>
   </div>
-  <script src="script.js"></script>
+
+  <!-- cache-buster para evitar cache do JS -->
+  <script src="script.js?v=10"></script>
 </body>
 </html>
