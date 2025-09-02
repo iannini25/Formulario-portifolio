@@ -12,7 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Montserrat', sans-serif;
-  padding: 20px; /* evita colar na borda em telas menores */
+  padding: 20px;
 }
 
 .container {
@@ -116,6 +116,86 @@ body {
   color: #e74c3c; /* vermelho */
 }
 
+/* Estilo do campo orçamento */
+.label-orcamento {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+#orcamento {
+  width: 100%;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#valor-orcamento {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: #00ACC1;
+}
+
+/* ---------- TOGGLES (Figma/Código) — AJUSTADO ---------- */
+.toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* centraliza os botões */
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  margin: 6px 0 18px;
+  padding: 8px 0;
+
+  /* remove a borda preta do fieldset */
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.label-servicos {
+  width: 100%;
+  text-align: center;         /* centraliza o título */
+  font-size: 15px;            /* um pouco menor */
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.toggle-input {
+  display: none; /* checkbox escondido */
+}
+
+.toggle {
+  padding: 10px 14px;         /* menor */
+  border: 1.5px solid #00ACC1;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 14px;            /* menor */
+  cursor: pointer;
+  transition: 0.2s;
+  user-select: none;
+}
+
+.toggle:hover {
+  background: rgba(0, 172, 193, 0.07);
+}
+
+.toggle-input:checked + .toggle {
+  background: #FFD700;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(0, 172, 193, 0.25);
+}
+
+/* responsivo: ainda menores em telas menores */
+@media (max-width: 900px) {
+  .toggle { padding: 9px 12px; font-size: 13px; }
+}
+
+
 
 /* ========================= */
 /* RESPONSIVIDADE */
@@ -125,21 +205,21 @@ body {
   .container {
     width: 100%;
     height: auto;
-    flex-direction: column; /* empilha os blocos */
+    flex-direction: column;
   }
 
   .left-panel,
   .right-panel {
-    width: 100%; /* ocupa toda a largura */
+    width: 100%;
     padding: 40px 20px;
   }
 
   .left-panel {
-    order: 1; /* aparece primeiro */
+    order: 1;
   }
 
   .right-panel {
-    order: 2; /* depois vem o formulário */
+    order: 2;
   }
 
   .left-panel h2 {
