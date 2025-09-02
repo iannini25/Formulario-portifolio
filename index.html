@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sem tempo irmão??</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <!-- Lado esquerdo -->
     <div class="left-panel">
-  <h2>
-    A mãozinha que <span class="highlight">faltava</span> pra fechar seu ano!
-  </h2>
-  <p>
-    Deixe a correria de lado e <span class="highlight">ganhe tempo</span> para o que realmente importa.  
-    <br> <br>
-    Uma ajudinha prática para você encerrar seus projetos <span class="highlight">sem stress</span>.
-  </p>
-</div>
-
+      <h2>
+        A mãozinha que <span class="highlight">faltava</span> pra fechar seu ano!
+      </h2>
+      <p>
+        Deixe a correria de lado e <span class="highlight">ganhe tempo</span> para o que realmente importa.
+        <br /><br />
+        Uma ajudinha prática para você encerrar seus projetos <span class="highlight">sem stress</span>.
+      </p>
+    </div>
 
     <!-- Lado direito -->
     <div class="right-panel">
       <h2>Garanta seu portifólio!</h2>
       <form class="login-form">
-         <input type="text" name="nome" placeholder="Seu Nome" required>
-         <input type="tel" name="whatsapp" id="whatsapp" placeholder="(00) 00000-0000" required>
-         <button type="submit" class="btn">ENVIAR</button>
-         <div id="form-status"></div> <!-- Mensagem de status aqui -->
-     </form>
+        <input type="text" name="nome" placeholder="Seu Nome" required />
+        <input type="tel" name="whatsapp" id="whatsapp" placeholder="Número" required />
 
+        <!-- Seleção de serviços -->
+        <fieldset class="toggle-group">
+          <legend class="label-servicos">O que você precisa?</legend>
+
+          <input type="checkbox" id="servico-figma" name="servicos" value="Figma" class="toggle-input" />
+          <label for="servico-figma" class="toggle">Figma</label>
+
+          <input type="checkbox" id="servico-codigo" name="servicos" value="Código" class="toggle-input" />
+          <label for="servico-codigo" class="toggle">Código</label>
+        </fieldset>
+
+        <button type="submit" class="btn">ENVIAR</button>
+        <div id="form-status"></div>
+      </form>
     </div>
   </div>
   <script src="script.js"></script>
